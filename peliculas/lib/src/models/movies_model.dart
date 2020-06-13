@@ -70,5 +70,11 @@ class Movie {
     adult            = json ['adult'];
     overview         = json ['overview'];
   } 
+
+  getPosterImg(){
+  return 'https://image.tmdb.org/t/p/w500/$posterPath';
+  }
 }
+
+
 
