@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:peliculas/src/models/movies_model.dart';
+
 import 'package:peliculas/src/widgets/card_swiper_widget.dart';
 
 import 'package:peliculas/src/providers/movies_provider.dart';
+import 'package:peliculas/src/widgets/horizontal_card.dart';
 
 class HomePage extends StatelessWidget {
   // const HomePage({Key key}) : super(key: key);
@@ -20,29 +23,59 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: Container(
-        child: Column(
-         children:<Widget>[
-            _swiperCards()
-          ]           
+        child: ListView(
+          children:<Widget>[   
+            _swiperCards(moviesProvider.getNowPlaying()),
+            SizedBox(height: 20,),
+            _swiperCards2(moviesProvider.getPupularMovies()),
+              
+           ],
         )
      ),
    );
   }
 
-  Widget _swiperCards() {
+  Widget _swiperCards(Future<List<Movie>> future) {
 
     return FutureBuilder(
-      future: moviesProvider.getNowPlaying(), 
+      future: future , 
       // initialData: InitialData,
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
         
         if(snapshot.hasData){
-          return CardSwiper(
-            movies: snapshot.data
+          return Column(
+            children: <Widget>[
+              SizedBox(height: 10.0,),
+              Text('Ahora en cines', style: Theme.of(context).textTheme.subtitle1,),
+              CardSwiper(
+                movies: snapshot.data
+              ),
+            ],
           );
         }else{
+          return Container();
+        }
+        
+      },
+    );
+    //  moviesProvider.getNowPlaying();
+
+    // return CardSwiper(movies: [1,2,3,4,5]);
+    // return Container();
+  }
+
+  Widget _swiperCards2(Future<List<Movie>> future) {
+
+    return FutureBuilder(
+      future: future , 
+      // initialData: InitialData,
+      builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+        
+        if(snapshot.hasData){
+          return HorizontalMovie(movies: snapshot.data,);
+        }else{
           return Center(
-            child: CircularProgressIndicator(),
+            child: Center(child: CircularProgressIndicator()),
           );
         }
         
