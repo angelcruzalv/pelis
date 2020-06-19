@@ -5,6 +5,7 @@ import 'package:peliculas/src/models/movies_model.dart';
 import 'package:peliculas/src/widgets/card_swiper_widget.dart';
 
 import 'package:peliculas/src/providers/movies_provider.dart';
+
 import 'package:peliculas/src/widgets/horizontal_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -66,20 +67,26 @@ class HomePage extends StatelessWidget {
 
   Widget _swiperCards2(Future<List<Movie>> future) {
 
-    return FutureBuilder(
-      future: future , 
-      // initialData: InitialData,
-      builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
-        
-        if(snapshot.hasData){
-          return HorizontalMovie(movies: snapshot.data,);
-        }else{
-          return Center(
-            child: Center(child: CircularProgressIndicator()),
-          );
-        }
-        
-      },
+    return Column(
+      children: <Widget>[
+        Text('Populares'),
+        SizedBox(height: 5.0,),
+        FutureBuilder(
+          future: future , 
+          // initialData: InitialData,
+          builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+            
+            if(snapshot.hasData){
+              return HorizontalMovie(movies: snapshot.data,);
+            }else{
+              return Center(
+                child: Center(child: CircularProgressIndicator()),
+              );
+            }
+            
+          },
+        ),
+      ],
     );
     //  moviesProvider.getNowPlaying();
 
