@@ -21,12 +21,12 @@ class HorizontalMovie extends StatelessWidget {
           initialPage: 1,
           ),
         children: 
-          _cardsList(),  
+          _cardsList(context),  
       ),
     );
   }
 
-  List<Widget> _cardsList() {
+  List<Widget> _cardsList(BuildContext context) {
 
     return movies.map((movie){
       
@@ -42,6 +42,12 @@ class HorizontalMovie extends StatelessWidget {
                           fit: BoxFit.cover,
                           height: 200,
                         ),
+                    ),
+                    SizedBox(height: 10.0,),
+                    Text(
+                      movie.title,
+                      overflow: TextOverflow.clip,    
+                      style: Theme.of(context).textTheme.caption,                
                     )
                   ],
         ),        

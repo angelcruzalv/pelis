@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
             _swiperCards(moviesProvider.getNowPlaying()),
             SizedBox(height: 20,),
             _swiperCards2(moviesProvider.getPupularMovies()),
-              
+            _swiperCards2(moviesProvider.getPupularMovies())
            ],
         )
      ),
