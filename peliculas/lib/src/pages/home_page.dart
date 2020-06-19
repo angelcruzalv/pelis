@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Películas en cines'),
+        title: Text('Películas App'),
         backgroundColor: Colors.indigoAccent,
         actions: <Widget>[
           IconButton(icon: Icon(Icons.search), onPressed: (){})

@@ -40,13 +40,13 @@ class HorizontalMovie extends StatelessWidget {
                           placeholder: AssetImage('assets/img/no-image.jpg'),
                           image: NetworkImage(movie.getPosterImg()),
                           fit: BoxFit.cover,
-                          height: 200,
+                          height: 160,
                         ),
                     ),
                     SizedBox(height: 10.0,),
                     Text(
                       movie.title,
-                      overflow: TextOverflow.clip,    
+                      overflow: TextOverflow.ellipsis,    
                       style: Theme.of(context).textTheme.caption,                
                     )
                   ],
