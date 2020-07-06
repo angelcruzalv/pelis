@@ -40,39 +40,33 @@ class HomePage extends StatelessWidget {
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(30),
                               bottomRight: Radius.circular(30))),
-                    
-                        child:Container(
-                              padding: EdgeInsets.only(top: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    'My App',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
+                      child: Container(
+                        padding: EdgeInsets.only(top: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'My App',
+                              style: TextStyle(color: Colors.white),
                             ),
-                            
-                          
-                      
+                          ],
+                        ),
+                      ),
                     ),
-                    
                   ),
                   Container(
-                  margin: EdgeInsets.only(top: 80),
-                  constraints: BoxConstraints.expand(height:MediaQuery.of(context).size.height-80),
-                  child: ListView(
-                    padding: EdgeInsets.all(10),
-                    scrollDirection: Axis.vertical,
-                    children:[
-                      _swiperCards(moviesProvider.getPupularMovies()),
-                      _swiperCards2(moviesProvider.getPupularMovies()),
-                      _swiperCards2(moviesProvider.getPupularMovies()),
-                    ]
+                    margin: EdgeInsets.only(top: 80),
+                    constraints: BoxConstraints.expand(
+                        height: MediaQuery.of(context).size.height - 80),
+                    child: ListView(
+                        padding: EdgeInsets.all(10),
+                        scrollDirection: Axis.vertical,
+                        children: [
+                          _swiperCards2(moviesProvider.getPupularMovies()),
+                          _swiperCards(moviesProvider.getPupularMovies()),
+                          _swiperCards2(moviesProvider.getPupularMovies()),
+                        ]),
                   ),
-                ),
-                  
                 ],
               ),
             ],
