@@ -19,6 +19,66 @@ class HomePage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
+          child: Column(
+            children: <Widget>[
+              Stack(
+                children: <Widget>[
+                  Container(
+                    child: Container(
+                      padding: EdgeInsets.all(40),
+                      constraints: BoxConstraints.expand(height: 225),
+                      decoration: BoxDecoration(
+                          gradient: new LinearGradient(
+                              colors: [
+                                Color.fromRGBO(69, 7, 83, 1.0),
+                                Color.fromRGBO(153, 0, 190, 1.0)
+                              ],
+                              begin: const FractionalOffset(1.0, 1.0),
+                              end: const FractionalOffset(0.2, 0.2),
+                              stops: [0.0, 1.0],
+                              tileMode: TileMode.clamp),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(30),
+                              bottomRight: Radius.circular(30))),
+                    
+                        child:Container(
+                              padding: EdgeInsets.only(top: 20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    'My App',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            
+                          
+                      
+                    ),
+                    
+                  ),
+                  Container(
+                  margin: EdgeInsets.only(top: 80),
+                  constraints: BoxConstraints.expand(height:MediaQuery.of(context).size.height-80),
+                  child: ListView(
+                    padding: EdgeInsets.all(10),
+                    scrollDirection: Axis.vertical,
+                    children:[
+                      _swiperCards(moviesProvider.getPupularMovies()),
+                      _swiperCards2(moviesProvider.getPupularMovies()),
+                      _swiperCards2(moviesProvider.getPupularMovies()),
+                    ]
+                  ),
+                ),
+                  
+                ],
+              ),
+            ],
+          ),
+        ),
+        /* body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
             colors: <Color>[
@@ -75,7 +135,7 @@ class HomePage extends StatelessWidget {
               )
             ],
           ),  
-        )
+        ) */
       ),
     );
     /* return Scaffold(
