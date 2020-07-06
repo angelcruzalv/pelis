@@ -15,7 +15,70 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+            colors: <Color>[
+              Color.fromRGBO(69, 7,83, 1.0),
+              Color.fromRGBO(153, 0, 190, 1.0),        
+              ],
+            ) 
+          ),
+          child: ListView(
+            physics: const NeverScrollableScrollPhysics(), //no scroll
+            children: <Widget>[
+              Padding(padding: EdgeInsets.only(top: 15.0, left:  10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      width: 125,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('My Movies',
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25.0
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 40.0,),
+              Container(
+                height: MediaQuery.of(context).size.height-50,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(35.0),
+                    topRight: Radius.circular(35.0)),
+                ),
+                child: ListView(
+                  primary: false,
+                  children: <Widget>[
+                    _swiperCards(moviesProvider.getNowPlaying()),
+                    _swiperCards2(moviesProvider.getPupularMovies()),
+                    _swiperCards2(moviesProvider.getPupularMovies()),
+                  ],
+                ),
+
+              )
+            ],
+          ),  
+        )
+      ),
+    );
+    /* return Scaffold(
       appBar: AppBar(
         title: Text('Películas App'),
         backgroundColor: Colors.indigoAccent,
@@ -33,30 +96,30 @@ class HomePage extends StatelessWidget {
            ],
         )
      ),
-   );
+   ); */
   }
 
   Widget _swiperCards(Future<List<Movie>> future) {
-
     return FutureBuilder(
-      future: future , 
+      future: future,
       // initialData: InitialData,
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
-        
-        if(snapshot.hasData){
+        if (snapshot.hasData) {
           return Column(
             children: <Widget>[
-              SizedBox(height: 10.0,),
-              Text('Ahora en cines', style: Theme.of(context).textTheme.subtitle1,),
-              CardSwiper(
-                movies: snapshot.data
+              SizedBox(
+                height: 10.0,
               ),
+              Text(
+                'Ahora en cines',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              CardSwiper(movies: snapshot.data),
             ],
           );
-        }else{
+        } else {
           return Container();
         }
-        
       },
     );
     //  moviesProvider.getNowPlaying();
@@ -66,24 +129,25 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _swiperCards2(Future<List<Movie>> future) {
-
     return Column(
       children: <Widget>[
         Text('Populares'),
-        SizedBox(height: 5.0,),
+        SizedBox(
+          height: 5.0,
+        ),
         FutureBuilder(
-          future: future , 
+          future: future,
           // initialData: InitialData,
           builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
-            
-            if(snapshot.hasData){
-              return HorizontalMovie(movies: snapshot.data,);
-            }else{
+            if (snapshot.hasData) {
+              return HorizontalMovie(
+                movies: snapshot.data,
+              );
+            } else {
               return Center(
                 child: Center(child: CircularProgressIndicator()),
               );
             }
-            
           },
         ),
       ],
