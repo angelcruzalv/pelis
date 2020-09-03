@@ -62,8 +62,8 @@ class HomePage extends StatelessWidget {
                         padding: EdgeInsets.all(10),
                         scrollDirection: Axis.vertical,
                         children: [
-                          _swiperCards2(moviesProvider.getPupularMovies()),
-                          _swiperCards(moviesProvider.getPupularMovies()),
+                          // _swiperCards2(moviesProvider.getPupularMovies()),
+                          _swiperCards(moviesProvider.getNowPlaying()),
                           _swiperCards2(moviesProvider.getPupularMovies()),
                         ]),
                   ),
@@ -189,12 +189,13 @@ class HomePage extends StatelessWidget {
         SizedBox(
           height: 5.0,
         ),
-        FutureBuilder(
-          future: future,
+        StreamBuilder(
+          stream: moviesProvider.popularesStream,
           // initialData: InitialData,
           builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
             if (snapshot.hasData) {
               return HorizontalMovie(
+                nextPage: moviesProvider.getPupularMovies,
                 movies: snapshot.data,
               );
             } else {
