@@ -59,6 +59,7 @@ class HomePage extends StatelessWidget {
                     constraints: BoxConstraints.expand(
                         height: MediaQuery.of(context).size.height - 80),
                     child: ListView(
+                        physics: BouncingScrollPhysics(),
                         padding: EdgeInsets.all(10),
                         scrollDirection: Axis.vertical,
                         children: [
